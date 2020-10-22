@@ -5,7 +5,9 @@
  */
 package view;
 
+import dao.professorDao;
 import javax.swing.JOptionPane;
+import table.ProfessorTableModel;
 
 /**
  *
@@ -18,6 +20,7 @@ public class ProfessorView extends javax.swing.JFrame {
      */
     public ProfessorView() {
         initComponents();
+        tbProfessor.setModel(new ProfessorTableModel(new professorDao().listarTodos()));
     }
 
     /**
@@ -30,7 +33,7 @@ public class ProfessorView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbProfessor = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -38,7 +41,7 @@ public class ProfessorView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbProfessor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -46,7 +49,7 @@ public class ProfessorView extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbProfessor);
 
         jMenu1.setText("Cadastrar");
         jMenuBar1.add(jMenu1);
@@ -139,6 +142,6 @@ public class ProfessorView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbProfessor;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,9 @@
  */
 package view;
 
+import dao.cursoDao;
 import javax.swing.JOptionPane;
+import table.CursoTableModel;
 
 /**
  *
@@ -18,6 +20,8 @@ public class CursoView extends javax.swing.JFrame {
      */
     public CursoView() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        tbCurso.setModel(new CursoTableModel(new cursoDao().listarTodos()));
     }
 
     /**
@@ -30,7 +34,7 @@ public class CursoView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbCurso = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -38,7 +42,7 @@ public class CursoView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -46,7 +50,7 @@ public class CursoView extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbCurso);
 
         jMenu1.setText("Cadastrar");
         jMenuBar1.add(jMenu1);
@@ -139,6 +143,6 @@ public class CursoView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbCurso;
     // End of variables declaration//GEN-END:variables
 }

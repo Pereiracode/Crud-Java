@@ -9,7 +9,7 @@ public class Professor {
     private String TelefoneFixo;
     private String TelefoneCelular;
     private Date DataNascimento;
-    private String Especialdade;
+    private String Especialidade;
     private String Titulo;
 
     public int getId() {
@@ -60,12 +60,12 @@ public class Professor {
         this.DataNascimento = DataNascimento;
     }
 
-    public String getEspecialdade() {
-        return Especialdade;
+    public String getEspecialidade() {
+        return Especialidade;
     }
 
-    public void setEspecialdade(String Especialdade) {
-        this.Especialdade = Especialdade;
+    public void setEspecialidade(String Especialidade) {
+        this.Especialidade = Especialidade;
     }
 
     public String getTitulo() {
