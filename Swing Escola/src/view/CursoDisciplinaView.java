@@ -5,23 +5,27 @@
  */
 package view;
 
+import dao.alunoDao;
+import dao.cursoDao;
 import dao.disciplinaDao;
 import javax.swing.JOptionPane;
+import table.AlunoTableModel;
 import table.DisciplinaTableModel;
 
 /**
  *
  * @author mateuspereira
  */
-public class DisciplinaView extends javax.swing.JFrame {
+public class CursoDisciplinaView extends javax.swing.JFrame {
 
     /**
-     * Creates new form DisciplinaView
+     * Creates new form CursoDisciplinaView
      */
-    public DisciplinaView() {
+    public CursoDisciplinaView() {
         initComponents();
-        tbDisciplina.setModel(new DisciplinaTableModel(new disciplinaDao().listarTodos()));
+        
         this.setLocationRelativeTo(null);
+        tbCursoDisciplina.setModel(new DisciplinaTableModel(new disciplinaDao().listarTodos()));
     }
 
     /**
@@ -33,8 +37,10 @@ public class DisciplinaView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCurso = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbDisciplina = new javax.swing.JTable();
+        tbCursoDisciplina = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -51,7 +57,16 @@ public class DisciplinaView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tbDisciplina.setModel(new javax.swing.table.DefaultTableModel(
+        txtCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCursoKeyPressed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Pesquisar disciplina por curso");
+
+        tbCursoDisciplina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,7 +74,7 @@ public class DisciplinaView extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tbDisciplina);
+        jScrollPane1.setViewportView(tbCursoDisciplina);
 
         jMenu1.setText("Cadastrar");
 
@@ -160,18 +175,37 @@ public class DisciplinaView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCursoKeyPressed
+        String pesquisa = txtCurso.getText();
+        tbCursoDisciplina.setModel(new DisciplinaTableModel(new cursoDao().DisciplinaPorCurso(pesquisa)));
+    }//GEN-LAST:event_txtCursoKeyPressed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.dispose();
@@ -247,25 +281,26 @@ public class DisciplinaView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CursoDisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CursoDisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CursoDisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CursoDisciplinaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DisciplinaView().setVisible(true);
+                new CursoDisciplinaView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -280,6 +315,7 @@ public class DisciplinaView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbDisciplina;
+    private javax.swing.JTable tbCursoDisciplina;
+    private javax.swing.JTextField txtCurso;
     // End of variables declaration//GEN-END:variables
 }

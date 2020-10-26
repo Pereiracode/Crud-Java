@@ -5,9 +5,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.Curso;
+import model.Disciplina;
 
 public class cursoDao {
 
@@ -20,6 +22,37 @@ public class cursoDao {
     public cursoDao() {
         conn = new ConnectionFactory().getConexao();
     }
+    
+    public ArrayList<Disciplina> DisciplinaPorCurso(String curso) {
+        String sql =
+                "SELECT d.* " +
+                "FROM curso c, cursodisciplina cd, disciplina d " +
+                "WHERE c.nome = ? " +
+                "AND d.id = cd.disciplinaid " +
+                "AND c.id = cd.cursoid ";
+
+        ArrayList<Disciplina> disciplinaList = new ArrayList();
+
+        
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, curso);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Disciplina disciplina = new Disciplina();
+                disciplina.setId(rs.getInt("id"));
+                disciplina.setNome(rs.getString("nome"));
+                disciplina.setCargaHoraria(rs.getInt("carga_horaria"));
+                disciplina.setAulasSemana(rs.getInt("aulas_semana"));
+
+                disciplinaList.add(disciplina);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return disciplinaList;
+    }
+    
     
     public void inserir(Curso curso){
         String sql = "INSERT INTO CURSO (nome, tipo, carga_horaria) VALUES (?, ?, ?)";

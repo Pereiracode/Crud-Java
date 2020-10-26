@@ -7,7 +7,7 @@ import java.util.Date;
 public class Aluno {
     private int Id;
     private String Nome;
-    private Date DataNascimento;
+    private String DataNascimento;
 
     public int getId() {
         return Id;
@@ -25,11 +25,11 @@ public class Aluno {
         this.Nome = Nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return DataNascimento;
     }
 
-    public void setDataNascimento(Date DataNascimento) {
+    public void setDataNascimento(String DataNascimento) {
         this.DataNascimento = DataNascimento;
     }
     
